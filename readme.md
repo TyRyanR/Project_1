@@ -1,5 +1,3 @@
-
-
 /***********************
 USER STORIES
 ***********************/
@@ -17,6 +15,8 @@ USER STORIES
 6) As a user, I want messages to display when it is my turn, when I have matched the correct sequence, and when I have failed to match the correct sequence.
 
 7) As a user, I want a button to start the game, and a separate button to reset the game.
+
+8) As a user, I want to be able to resize the window and have the design be responsive.
 
 
 /***********************
