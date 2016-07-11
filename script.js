@@ -3,6 +3,10 @@ PSEUDO-CODE
 ***********************/
 
 
+
+
+
+
 /*****************************
 
 
@@ -51,15 +55,5 @@ userTurn function (pattern)
           generalMessage = "wrong guess nice try. Click start to reset the game"
           break;
 //
-
-
-
-
-
-
-
-
-
-
 
 *****************************/
