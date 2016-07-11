@@ -31,33 +31,33 @@ function generateSequence() {
   } else {
     computer.sequence.push("blue");
     }
-  lightUpSequence();
+  lightUp();
 }
 
-function lightUpSequence() {
-  // for (var i = 0; i < computer.sequence.length; i++) {
-    // lightSquare(computer.sequence[i]);
-  // }
+function lightUp() {
+  var opac = 500;
+  for (var i = 0; i < computer.sequence.length; i++) {
+    lighten(computer.sequence[i], opac);
+    opac += 300;
+    dim(opac);
+  }
+}
 
-  var i = 0;
+function lighten(color, opac) {
+  setTimeout(function () {
+    $("#" + color).css("opacity", "1");
+  }, opac);
+}
 
-  setTimeout(lightSquare(computer.sequence[i]), 500);
+function dim(opac) {
+  setTimeout(function () {
+    $(".game_button").css("opacity", "0.6");
+  }, opac);
 
-  playerTurn();
 }
 
 
 
-
-
-function lightSquare(color) {
-  $("#" + color).css("opacity", "1");
-  setTimeout(dimSquare, 500);
-}
-
-function dimSquare() {
-  $(".game_button").css("opacity", "0.6");
-}
 // The argument computer.sequence[i] above refers to the value of the number at the ith index of the array.
 // It gets passed into the colorShow function below at a set timeout, then all colors opactiy are reset to dim
 
@@ -68,27 +68,15 @@ function dimSquare() {
 // }
 
 
-function playerTurn() {
-  var playerSequence = [];
-  var counter = 0;
-  $(".message_section").html("<p>Your turn. Good luck!</p>");
-  $(".game_button").on("click", function() {
-     if ($(this).attr("id") == computer.sequence[counter]) {
-        playerSequence.push(computer.sequence[counter]);
-        counter++;
-        console.log("good job");
-     } else {
-       console.log("GAME OVER");
-     }
-
-     if (playerSequence.length == computer.sequence.length) {
-       generateSequence();
-     }
-
-})
 
 
-};
+
+
+
+
+
+
+
 
 
 
