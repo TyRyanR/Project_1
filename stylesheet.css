@@ -1,0 +1,53 @@
+* {
+  box-sizing: border-box;
+}
+
+/**************************
+HEADER SECTION
+**************************/
+
+header {
+  text-align: center;
+}
+
+/**************************
+MAIN SECTION
+**************************/
+
+main {
+  text-align: center;
+  width: 95%;
+  margin: 0 auto;
+}
+
+#start_button {
+  padding: 1em 3.9em;
+}
+
+#reset_button {
+  padding: 1em 3.8em;
+  margin-left: -4px;
+}
+
+/**************************
+GAME SECTION
+**************************/
+
+.game_section {
+  background-color: black;
+  height: 20em;
+  position: relative;
+  border-radius: 10px;
+}
+
+.game_button {
+  display: inline-block;
+  position: relative;
+  background: red;
+  height: 9em;
+  width: 46%;
+  top: 6px;
+  border-radius: 5px;
+  margin-top: 5px;
+  margin-left: 3px;
+}
