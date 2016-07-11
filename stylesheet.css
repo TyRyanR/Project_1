@@ -2,12 +2,23 @@
   box-sizing: border-box;
 }
 
+body {
+  background-color: rgb(43, 43, 43);
+}
 /**************************
 HEADER SECTION
 **************************/
 
 header {
   text-align: center;
+}
+
+header h1 {
+  font-weight: 100;
+  font-size: 1.5em;
+  color: white;
+  margin-top: 0.3em;
+  margin-bottom: 0.3em;
 }
 
 /**************************
@@ -20,13 +31,40 @@ main {
   margin: 0 auto;
 }
 
+button {
+  outline: none;
+  border-style: hidden;
+  cursor: pointer;
+}
+
 #start_button {
-  padding: 1em 3.9em;
+  padding: 0.2em 1.3em;
+  font-size: 2em;
+  font-weight: 100;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  background-color: rgb(92, 205, 161);
 }
 
 #reset_button {
-  padding: 1em 3.8em;
-  margin-left: -4px;
+  padding: 0.2em 1em;
+  font-size: 2em;
+  font-weight: 100;
+  margin-left: -1px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  background-color: rgb(254, 127, 94);
+}
+
+
+/**************************
+MESSAGE SECTION
+**************************/
+
+.message_section p {
+  font-weight: 300;
+  padding: 1em 0.3em;
+  color: rgb(190, 190, 190);
 }
 
 /**************************
@@ -35,7 +73,7 @@ GAME SECTION
 
 .game_section {
   background-color: black;
-  height: 20em;
+  height: 19.5em;
   position: relative;
   border-radius: 10px;
 }
@@ -45,9 +83,45 @@ GAME SECTION
   position: relative;
   background: red;
   height: 9em;
-  width: 46%;
-  top: 6px;
+  width: 47%;
+  top: 2px;
   border-radius: 5px;
-  margin-top: 5px;
+  margin-top: 4.5px;
   margin-left: 3px;
+}
+
+#button_green {
+  background-color: rgb(10, 191, 98);
+}
+
+#button_red {
+  background-color: rgb(236, 0, 57);
+}
+
+#button_yellow {
+  background-color: rgb(217, 236, 0);
+}
+#button_blue {
+  background-color: rgb(0, 179, 236);
+}
+
+/**************************
+STATISTICS SECTION
+**************************/
+
+.round_number_section {
+  margin-top: 0.5em;
+  padding: 1em 0;
+  text-align: left;
+  font-size:1em;
+  font-weight: 500;
+  color: rgb(190, 251, 255);
+}
+
+.streak_number_section {
+  padding: 1em 0;
+  text-align: left;
+  font-size:1em;
+  font-weight: 500;
+  color: rgb(190, 251, 255);
 }
