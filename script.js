@@ -30,7 +30,7 @@ function generateSequence() {
     computer.sequence.push("yellow");
   } else {
     computer.sequence.push("blue");
-    }
+  }
   lightUp();
 }
 
@@ -41,6 +41,7 @@ function lightUp() {
     opac += 300;
     dim(opac);
   }
+  playerTurn();
 }
 
 function lighten(color, opac) {
@@ -54,6 +55,31 @@ function dim(opac) {
     $(".game_button").css("opacity", "0.6");
   }, opac);
 
+}
+
+function playerTurn() {
+
+  var counter = 0;
+  var playerSequence = [];
+
+  for (var i = 0; i < computer.sequence.length; i++) {
+
+    $(".game_button").on("click", function() {
+      if ($(this).attr("id") == computer.sequence[counter]) {
+        console.log("great");
+        playerSequence.push(computer.sequence[counter]);
+        counter++;
+        if (playerSequence.length == computer.sequence.length) {
+          generateSequence();
+        }
+      } else {
+        console.log("wrong answer");
+      }
+
+
+
+    })
+  }
 }
 
 
@@ -88,37 +114,37 @@ PSEUDO-CODE
 /*
 
 random button sequence generator function
-     generate new number 1-4 and save to variable
-     push this new number to the end of the pattern array
-     call light up sequence function, passing pattern array through as argument
+generate new number 1-4 and save to variable
+push this new number to the end of the pattern array
+call light up sequence function, passing pattern array through as argument
 //
 
 light up sequence function (pattern)
-    for loop go through each iteration of the pattern array and
-    $(element).eq(i).opacity-increase
-    $(element).eq(i).opacity-decrease to default
-  //
-    generalMessage = Your turn!
-    display general message
-    call userTurn function passing pattern through
+for loop go through each iteration of the pattern array and
+$(element).eq(i).opacity-increase
+$(element).eq(i).opacity-decrease to default
+//
+generalMessage = Your turn!
+display general message
+call userTurn function passing pattern through
 //
 
 userTurn function (pattern)
-    var userSequence = [];
-    for loop length of pattern sequence
-      onclick ($anybutton)
-        $(this).opacity-increase
-        $(this).opacity-decrease to default
-        if $(this).eq() equals pattern[i]
-          console.log(true)
-          streak += 1
-          if i = pattern.length - 1
-            generalMessage = "awesome job. Next round"
-            round += 1
-            random button sequence generator function
-        else
-          generalMessage = "wrong guess nice try. Click start to reset the game"
-          break;
+var userSequence = [];
+for loop length of pattern sequence
+onclick ($anybutton)
+$(this).opacity-increase
+$(this).opacity-decrease to default
+if $(this).eq() equals pattern[i]
+console.log(true)
+streak += 1
+if i = pattern.length - 1
+generalMessage = "awesome job. Next round"
+round += 1
+random button sequence generator function
+else
+generalMessage = "wrong guess nice try. Click start to reset the game"
+break;
 //
 
 *****************************/
