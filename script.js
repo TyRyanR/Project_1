@@ -1,26 +1,52 @@
+var player = {
+  round: 0,
+  streak: 0,
+  inGame: false
+};
+
+var computer = {
+  sequence: [],
+}
+
+$("#start_button").on("click", function(evt) {
+  evt.preventDefault();
+  if (player.inGame == false) {
+    player.round += 1;
+    player.inGame = true;
+    $(".round_number_section").html("Round: " + player.round);
+    setTimeout(generateSequence, 1000);
+  } else {
+    $(".message_section").html("<p>You have already started a game. Please click reset if you would like to start over.</p>");
+  }
+})
+
+
+
+function generateSequence() {
+  var newNumber = Math.floor(Math.random() * ((4-0)+1) + 0);
+  computer.sequence.push(newNumber);
+  lightUpSequence();
+}
+
+function lightUpSequence() {
+  for (var i = 0; i < computer.sequence.length; i++) {
+    $(".game_button").eq(i).css("opacity", "1");
+  }
+
+}
+
+
+
+
+
+
+
+
+
 /***********************
 PSEUDO-CODE
 ***********************/
-
-
-
-
-
-
-/*****************************
-
-
-var generalMessage = click start to begin
-var pattern = [];
-
-
-if user clicks start button
-      var round = 0
-      var streak = 0
-      generalMessage div displays countdown from 3
-      call random button sequence generator function
-//
-
+/*
 
 random button sequence generator function
      generate new number 1-4 and save to variable

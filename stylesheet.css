@@ -3,7 +3,7 @@
 }
 
 body {
-  background-color: rgb(43, 43, 43);
+  background-color: rgb(47, 47, 47);
 }
 /**************************
 HEADER SECTION
@@ -60,11 +60,13 @@ button {
 /**************************
 MESSAGE SECTION
 **************************/
-
+.message_section {
+  height: 4em;
+}
 .message_section p {
   font-weight: 300;
-  padding: 1em 0.3em;
   color: rgb(190, 190, 190);
+  margin: 0;
 }
 
 /**************************
@@ -84,25 +86,30 @@ GAME SECTION
   background: red;
   height: 9em;
   width: 47%;
-  top: 2px;
-  border-radius: 5px;
-  margin-top: 4.5px;
+  top: 2.5px;
+  margin-top: 4px;
   margin-left: 3px;
+  opacity: 0.6;
+
 }
 
 #button_green {
   background-color: rgb(10, 191, 98);
+  border-top-left-radius: 5px;
 }
 
 #button_red {
   background-color: rgb(236, 0, 57);
+  border-top-right-radius: 5px;
 }
 
 #button_yellow {
-  background-color: rgb(217, 236, 0);
+  background-color: rgb(234, 252, 20);
+  border-bottom-right-radius: 5px;
 }
 #button_blue {
   background-color: rgb(0, 179, 236);
+  border-bottom-left-radius: 5px;
 }
 
 /**************************
@@ -124,4 +131,26 @@ STATISTICS SECTION
   font-size:1em;
   font-weight: 500;
   color: rgb(190, 251, 255);
+}
+
+
+
+/**************************
+MEDIA QUERIES
+**************************/
+@media (min-width: 500px) {
+  .game_button {
+    width: 48%;
+  }
+}
+
+@media (min-width: 750px) {
+  .game_button {
+    width: 48.5%;
+  }
+
+@media (min-width: 950px) {
+  .game_button {
+    width: 49%;
+  }
 }
