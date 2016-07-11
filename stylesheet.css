@@ -3,7 +3,7 @@
 }
 
 body {
-  background-color: rgb(47, 47, 47);
+  background-color: rgb(43, 43, 43);
 }
 /**************************
 HEADER SECTION
@@ -93,21 +93,21 @@ GAME SECTION
 
 }
 
-#button_green {
+#green {
   background-color: rgb(10, 191, 98);
   border-top-left-radius: 5px;
 }
 
-#button_red {
+#red {
   background-color: rgb(236, 0, 57);
   border-top-right-radius: 5px;
 }
 
-#button_yellow {
+#yellow {
   background-color: rgb(234, 252, 20);
   border-bottom-right-radius: 5px;
 }
-#button_blue {
+#blue {
   background-color: rgb(0, 179, 236);
   border-bottom-left-radius: 5px;
 }
