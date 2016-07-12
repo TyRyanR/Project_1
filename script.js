@@ -14,16 +14,17 @@ var computer = {
 // It resets every round in the youMayPass function below by setting clickNumber back to 0, aka index 0 of computer.sequence
 
 var clickNumber = 0;
+var timeOutID;
 
 $("#start_button").on("click", function(evt) {
   if (player.inGame == false) {
     evt.preventDefault();
     player.round += 1;
     player.inGame = true;
-    $(".round_number_section").html("<p>Round Number: "+player.round+"</p>");
+    timeOutID = $(".message_section").html("<p>"+player.round+"</p>").showAndHide();
     generateSequence();
   } else {
-    $(".message_section").html("<p>You have already started a game. Press press reset if you would like to reset your game.</p>").showAndHide();
+    timeOutID = $(".message_section").html("<p>GAME ALREADY STARTED</p>").showAndHide();
   }
 })
 
@@ -35,7 +36,10 @@ $("#reset_button").on("click", function (evt) {
   clickNumber = 0;
   computer.sequence = [];
   $(".message_section").html("");
-  $(".round_number_section").html("<p>Round Number: "+player.round+"</p>");
+  // Setting timeOutID to equal the ID number of anything that has the .showAndHide call so that anytime between now and
+    // x seconds, I can CLEAR the ID of that async function occuring, and just cancel it. Since you cannot cancel the jquery delay method,
+      // this is a more manual way.
+  timeOutID = $(".message_section").html("<p>GAME HAS BEEN RESET</p>").showAndHide();
 })
 
 function generateSequence() {
@@ -85,33 +89,34 @@ $(".game_button").on("click", function(evt) {
   evt.preventDefault();
 
   if (player.inGame == true) {
-    if ($(this).attr("id") == computer.sequence[clickNumber]) {
-    $(this).css("opacity", "1");
-    setTimeout(function () {
-      $(".game_button").css("opacity", "0.6");
-    }, 100);
-    console.log("great job");
-    clickNumber = clickNumber + 1;
-      if (computer.sequence.length == clickNumber) {
-        youMayPass();
+    if ($(this).attr("id") === computer.sequence[clickNumber]) {
+      $(this).css("opacity", "1");
+      setTimeout(function () {
+        $(".game_button").css("opacity", "0.6");
+      }, 100);
+      console.log("great job");
+      clickNumber = clickNumber + 1;
+        if (computer.sequence.length == clickNumber) {
+          youMayPass();
       }
-  } else {
-    //Thinking about refactoring here. Maybe create an END game function that resets everything??
-    player.round = 0;
-    player.inGame = false;
-    clickNumber = 0;
-    computer.sequence = [];
-    $(".round_number_section").html("<p>Round Number: "+player.round+"</p>");
-    $(".message_section").html("<p>You lose. Better luck next time.</p>")
-  }
+    } else {
+      //Thinking about refactoring here. Maybe create an END game function that resets everything??
+      clearTimeout(timeOutID)
+      $(".message_section").html("<p>WRONG SEQUENCE. BETTER LUCK NEXT TIME. YOU MADE IT THROUGH "+ (player.round - 1) + " ROUND(S)</p>").show();
+      console.log("you lose");
+      player.round = 0;
+      player.inGame = false;
+      clickNumber = 0;
+      computer.sequence = [];
+    }
   }
 });
 
 function youMayPass() {
     clickNumber = 0;
-    generateSequence();
     player.round += 1;
-    $(".round_number_section").html("<p>Round Number: "+player.round+"</p>");
+    timeOutID =  $(".message_section").html("<p>"+player.round+"</p>").showAndHide();
+    generateSequence();
 }
 
 
