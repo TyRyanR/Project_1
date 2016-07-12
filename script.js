@@ -23,7 +23,7 @@ $("#start_button").on("click", function(evt) {
     $(".round_number_section").html("<p>Round Number: "+player.round+"</p>");
     generateSequence();
   } else {
-    $(".message_section").html("<p>You have already started a game. Press reset if you would like to reset your game.</p>")
+    $(".message_section").html("<p>You have already started a game. Press press reset if you would like to reset your game.</p>").showAndHide();
   }
 })
 
@@ -54,7 +54,7 @@ function generateSequence() {
 
 function iterator() {
 
-  // This was awesome. Added 100 seconds to call the lightIn function if the color is the same as the index before.
+  // This was great. Added 100 seconds to call the lightIn function if the color is the same as the index before.
   var delay = 400;
   for (var i = 0; i < computer.sequence.length; i++) {
     if (computer.sequence[i] == computer.sequence[i-1]) {
