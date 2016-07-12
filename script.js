@@ -85,16 +85,10 @@ function lightOut(color, delay) {
   }, delay);
 }
 
-$(".game_button").on("click", function(evt) {
+$(".game_button").on("mouseup", function(evt) {
   evt.preventDefault();
-
   if (player.inGame == true) {
     if ($(this).attr("id") === computer.sequence[clickNumber]) {
-      $(this).css("opacity", "1");
-      setTimeout(function () {
-        $(".game_button").css("opacity", "0.6");
-      }, 100);
-      console.log("great job");
       clickNumber = clickNumber + 1;
         if (computer.sequence.length == clickNumber) {
           youMayPass();
@@ -110,6 +104,18 @@ $(".game_button").on("click", function(evt) {
       computer.sequence = [];
     }
   }
+});
+
+$(".game_button").on("mousedown", function(evt) {
+    if (player.inGame == true) {
+      $(this).css("opacity", "1");
+    }
+});
+
+$(".game_button").on("mouseup", function(evt) {
+    if (player.inGame == true) {
+      $(this).css("opacity", "0.6");
+    }
 });
 
 function youMayPass() {
