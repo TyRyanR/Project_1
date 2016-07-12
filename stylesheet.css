@@ -62,12 +62,13 @@ MESSAGE SECTION
 **************************/
 .message_section {
   height: 3em;
+  margin-top: -25px;
 }
 .message_section p {
   font-weight: 400;
-  color: rgb(190, 190, 190);
-  padding-top: 0.5em;
-  font-size: 1em;
+  color: rgb(242, 242, 242);
+  font-size: 2.5em;
+  margin-top: 1.5em;
 }
 
 /**************************
@@ -111,11 +112,11 @@ GAME SECTION
 
 #yellow {
   background-color: rgb(234, 252, 20);
-  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
 }
 #blue {
   background-color: rgb(0, 179, 236);
-  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
 }
 
 /**************************
@@ -139,8 +140,19 @@ MEDIA QUERIES
     width: 48.5%;
   }
 
+  .message_section p {
+    font-weight: 600;
+    font-size: 3em;
+  }
+
 @media (min-width: 950px) {
   .game_button {
     width: 49%;
+  }
+
+  .message_section p {
+    font-weight: 500;
+    font-size: 5em;
+    margin-top: 0.8em;
   }
 }

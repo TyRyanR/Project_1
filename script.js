@@ -21,7 +21,7 @@ $("#start_button").on("click", function(evt) {
     evt.preventDefault();
     player.round += 1;
     player.inGame = true;
-    timeOutID = $(".message_section").html("<p>"+player.round+"</p>").showAndHide();
+    timeOutID = $(".message_section").html("<p>ROUND "+player.round+"</p>").showAndHide();
     generateSequence();
   } else {
     timeOutID = $(".message_section").html("<p>GAME ALREADY STARTED</p>").showAndHide();
@@ -39,7 +39,7 @@ $("#reset_button").on("click", function (evt) {
   // Setting timeOutID to equal the ID number of anything that has the .showAndHide call so that anytime between now and
     // x seconds, I can CLEAR the ID of that async function occuring, and just cancel it. Since you cannot cancel the jquery delay method,
       // this is a more manual way.
-  timeOutID = $(".message_section").html("<p>GAME HAS BEEN RESET</p>").showAndHide();
+  timeOutID = $(".message_section").html("<p>GAME RESET</p>").showAndHide();
 })
 
 function generateSequence() {
@@ -102,7 +102,7 @@ $(".game_button").on("click", function(evt) {
     } else {
       //Thinking about refactoring here. Maybe create an END game function that resets everything??
       clearTimeout(timeOutID)
-      $(".message_section").html("<p>WRONG SEQUENCE. BETTER LUCK NEXT TIME. YOU MADE IT THROUGH "+ (player.round - 1) + " ROUND(S)</p>").show();
+      $(".message_section").html("<p>YOU LOST IN ROUND " + (player.round) + "!" + "</p>").show();
       console.log("you lose");
       player.round = 0;
       player.inGame = false;
@@ -115,7 +115,7 @@ $(".game_button").on("click", function(evt) {
 function youMayPass() {
     clickNumber = 0;
     player.round += 1;
-    timeOutID =  $(".message_section").html("<p>"+player.round+"</p>").showAndHide();
+    timeOutID =  $(".message_section").html("<p>ROUND "+player.round+"</p>").showAndHide();
     generateSequence();
 }
 
