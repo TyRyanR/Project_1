@@ -90,8 +90,12 @@ GAME SECTION
   margin-top: 4px;
   margin-left: 3px;
   opacity: 0.6;
-
+  cursor: pointer;
 }
+
+/*.game_button:active {
+  opacity: 1;
+}*/
 
 #green {
   background-color: rgb(10, 191, 98);

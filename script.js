@@ -8,15 +8,34 @@ var computer = {
   sequence: [],
 }
 
+// This clickNumber variable is used to track the index of the computer.sequence array
+// It will allow, on click, for the program to figure out if the button clicked has the same value
+      // as the index number in the computer.sequence array.
+// It resets every round in the checker function below by setting clickNumber back to 0, aka index 0 of computer.sequence
+
 var clickNumber = 0;
 
 $("#start_button").on("click", function(evt) {
-  evt.preventDefault();
-  player.round += 1;
-  player.inGame = true;
-  $(".round_number_section").html("<p>Round Number: "+player.round+"</p>");
+  if (player.inGame == false) {
+    evt.preventDefault();
+    player.round += 1;
+    player.inGame = true;
+    $(".round_number_section").html("<p>Round Number: "+player.round+"</p>");
+    generateSequence();
+  } else {
+    $(".message_section").html("<p>You have already started a game. Press reset if you would like to reset your game.</p>")
+  }
+})
 
-  generateSequence();
+$("#reset_button").on("click", function (evt) {
+  // All this can be refactored possibly into an END GAME function.
+  evt.preventDefault();
+  player.round = 0;
+  player.inGame = false;
+  clickNumber = 0;
+  computer.sequence = [];
+  $(".message_section").html("");
+  $(".round_number_section").html("<p>Round Number: "+player.round+"</p>");
 })
 
 function generateSequence() {
@@ -32,7 +51,6 @@ function generateSequence() {
   }
   iterator();
 }
-
 
 function iterator() {
   var delay = 500;
@@ -55,134 +73,40 @@ function lightOut(color, delay) {
   }, delay);
 }
 
+$(".game_button").on("click", function(evt) {
+  evt.preventDefault();
 
-$(".game_button").on("click", function() {
-
-  if ($(this).attr("id") == computer.sequence[clickNumber]) {
-  console.log("great job");
-  clickNumber = clickNumber + 1;
+  if (player.inGame == true) {
+    if ($(this).attr("id") == computer.sequence[clickNumber]) {
+    $(this).css("opacity", "1");
+    setTimeout(function () {
+      $(".game_button").css("opacity", "0.6");
+    }, 100);
+    console.log("great job");
+    clickNumber = clickNumber + 1;
+      if (computer.sequence.length == clickNumber) {
+        checker();
+      }
+  } else { //Thinking about refactoring here. Maybe create an END game function that resets everything??
+    player.round = 0;
+    player.inGame = false;
+    clickNumber = 0;
+    computer.sequence = [];
+    $(".round_number_section").html("<p>Round Number: "+player.round+"</p>");
+    $(".message_section").html("<p>You lose. Better luck next time.</p>")
+    }
   }
-
-  if (computer.sequence.length == clickNumber) {
-    checker();
-  }
-
 });
 
 function checker() {
-
     clickNumber = 0;
     generateSequence();
     player.round += 1;
     $(".round_number_section").html("<p>Round Number: "+player.round+"</p>");
-
 }
 
 
 
-
-
-
-
-
-
-// $("#start_button").on("click", function(evt) {
-//   evt.preventDefault();
-//   // if (player.inGame == false) {
-//     player.round += 1;
-//     player.inGame = true;
-//     $(".round_number_section").html("Round: " + player.round);
-//     generateSequence();
-//     lightUp();
-//   // } else {
-//   //   $(".message_section").html("<p>You have already started a game. Please click reset if you would like to start over.</p>");
-//   // }
-// })
-//
-// function generateSequence() {
-//   var newNumber = Math.floor(Math.random() * ((4-0)+1) + 0);
-//   if (newNumber == 1) {
-//     computer.sequence.push("green");
-//   } else if (newNumber == 2) {
-//     computer.sequence.push("red");
-//   } else if (newNumber == 3) {
-//     computer.sequence.push("yellow");
-//   } else {
-//     computer.sequence.push("blue");
-//   }
-// }
-//
-// function lightUp() {
-//   var opac = 500;
-//   for (var i = 0; i < computer.sequence.length; i++) {
-//     lighten(computer.sequence[i], opac);
-//     opac += 300;
-//     dim(opac);
-//   }
-//   // playerTurn();
-// }
-//
-// function lighten(color, opac) {
-//   setTimeout(function () {
-//     $("#" + color).css("opacity", "1");
-//   }, opac);
-// }
-//
-// function dim(opac) {
-//   setTimeout(function () {
-//     $(".game_button").css("opacity", "0.6");
-//   }, opac);
-//
-// }
-//
-// function playerTurn() {
-//
-//   var counter = 0;
-//   var playerSequence = [];
-//
-//   for (var i = 0; i < computer.sequence.length; i++) {
-//
-//     $(".game_button").on("click", function() {
-//       if ($(this).attr("id") == computer.sequence[counter]) {
-//         console.log("great");
-//         playerSequence.push(computer.sequence[counter]);
-//         counter++;
-//         if (playerSequence.length == computer.sequence.length) {
-//           generateSequence();
-//         }
-//       } else {
-//         console.log("wrong answer");
-//       }
-//     })
-//   }
-// }
-//
-//
-//
-// // The argument computer.sequence[i] above refers to the value of the number at the ith index of the array.
-// // It gets passed into the colorShow function below at a set timeout, then all colors opactiy are reset to dim
-//
-//
-// //
-// // function colorHide() {
-// //   $(".game_button").css("opacity", "0.6");
-// // }
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 // /***********************
 // PSEUDO-CODE
 // ***********************/
@@ -222,4 +146,3 @@ function checker() {
 // break;
 // //
 //
-// *****************************/
