@@ -11,7 +11,7 @@ var computer = {
 // This clickNumber variable is used to track the index of the computer.sequence array
 // It will allow, on click, for the program to figure out if the button clicked has the same value
       // as the index number in the computer.sequence array.
-// It resets every round in the checker function below by setting clickNumber back to 0, aka index 0 of computer.sequence
+// It resets every round in the youMayPass function below by setting clickNumber back to 0, aka index 0 of computer.sequence
 
 var clickNumber = 0;
 
@@ -53,11 +53,19 @@ function generateSequence() {
 }
 
 function iterator() {
-  var delay = 500;
+
+  // This was awesome. Added 100 seconds to call the lightIn function if the color is the same as the index before.
+  var delay = 400;
   for (var i = 0; i < computer.sequence.length; i++) {
-    lightIn(computer.sequence[i], delay);
-    delay += 500;
-    lightOut(computer.sequence[i], delay);
+    if (computer.sequence[i] == computer.sequence[i-1]) {
+      lightIn(computer.sequence[i], delay + 100);
+      delay += 400;
+      lightOut(computer.sequence[i], delay);
+    } else {
+      lightIn(computer.sequence[i], delay);
+      delay += 400;
+      lightOut(computer.sequence[i], delay);
+    }
   }
 }
 
@@ -85,20 +93,21 @@ $(".game_button").on("click", function(evt) {
     console.log("great job");
     clickNumber = clickNumber + 1;
       if (computer.sequence.length == clickNumber) {
-        checker();
+        youMayPass();
       }
-  } else { //Thinking about refactoring here. Maybe create an END game function that resets everything??
+  } else {
+    //Thinking about refactoring here. Maybe create an END game function that resets everything??
     player.round = 0;
     player.inGame = false;
     clickNumber = 0;
     computer.sequence = [];
     $(".round_number_section").html("<p>Round Number: "+player.round+"</p>");
     $(".message_section").html("<p>You lose. Better luck next time.</p>")
-    }
+  }
   }
 });
 
-function checker() {
+function youMayPass() {
     clickNumber = 0;
     generateSequence();
     player.round += 1;
