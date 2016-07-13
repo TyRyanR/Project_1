@@ -112,9 +112,9 @@ GAME SECTION
 }
 
 .game_button:active {
-  -webkit-box-shadow: inset 3px 10px 22px 9px rgba(0,0,0,0.63);
-  -moz-box-shadow: inset 3px 10px 22px 9px rgba(0,0,0,0.63);
-  box-shadow: inset 3px 10px 22px 9px rgba(0,0,0,0.63);
+  -webkit-box-shadow: inset 3px 10px 22px 10px rgba(0,0,0,0.50);
+  -moz-box-shadow: inset 3px 10px 22px 10px rgba(0,0,0,0.50);
+  box-shadow: inset 3px 10px 22px 10px rgba(0,0,0,0.50);
 }
 
 #green {
