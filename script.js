@@ -20,6 +20,12 @@ Setting timeOutID to equal the ID number of anything that has the .showAndHide c
 this is a more manual way.
 ****/
 
+var lightInID;
+var shutDown = [];
+/**** lightInID is used to capture the ID of the lightIn function
+shutDown is an array used to keep track of all current lightInId values so that they can all be cleared upon game ending
+****/
+
 /********************************
 WHEN YOU CLICK THE START BUTTON
 ********************************/
@@ -65,28 +71,31 @@ FUNCTION THAT ITERATES THROUGH COMPUTER.SEQUENCE AND LIGHTS CORRESPONDING BUTTON
 ********************************/
 function iterator() {
   //var delay is created so that every iteration through computer.sequence, the delay can increase.
-  var delay = 400;
-  for (var i = 0; i < computer.sequence.length; i++) {
-    //This if/else statement 100 seconds to call the lightIn function if the color is the same as the index before.
-    if (computer.sequence[i] == computer.sequence[i-1]) {
-      lightIn(computer.sequence[i], delay + 100);
-      delay += 400;
-      lightOut(computer.sequence[i], delay);
-    } else {
-      lightIn(computer.sequence[i], delay);
-      delay += 400;
-      lightOut(computer.sequence[i], delay);
+    var delay = 400;
+    for (var i = 0; i < computer.sequence.length; i++) {
+      //This if/else statement 100 seconds to call the lightIn function if the color is the same as the index before.
+      if (computer.sequence[i] == computer.sequence[i-1]) {
+        lightIn(computer.sequence[i], delay + 100);
+        delay += 400;
+        lightOut(computer.sequence[i], delay);
+      } else {
+        lightIn(computer.sequence[i], delay);
+        delay += 400;
+        lightOut(computer.sequence[i], delay);
+      }
     }
-  }
 }
 
 /********************************
 TWO FUNCTIONS - ONE CREATES THE LIGHT UP EFFECT, AND ONE REMOVES IT AFTER A DELAY
 ********************************/
 function lightIn(color, delay) {
-  setTimeout(function () {
-      $("#" + color).css("opacity", "1");
+  lightInID = setTimeout(function () {
+    $("#" + color).css("opacity", "1");
   }, delay);
+
+  shutDown.push(lightInID);
+  // this pushes each new lightInID value to an array called shutDown, so that if I need to stop displaying all buttons after the setTimeout has been initiated from the interator function, I can cancel all at once by iterating through - as shown in the endGame function.
 }
 
 function lightOut(color, delay) {
@@ -137,7 +146,9 @@ FUNCTION THAT ENDS THE GAME EITHER ON CLICKING RESET, OR PRESSING WRONG BUTTON
 ********************************/
 function endGame(state) {
   $(".message_section").html("");
-  $(".game_button").css("opacity", "0.6");
+  for (var i = 0; i < shutDown.length; i++) {
+    clearTimeout(shutDown[i]);
+  }
   if (state === "reset") {
     timeOutID = $(".message_section").html("<p>GAME RESET</p>").showAndHide();
   } else {
