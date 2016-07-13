@@ -90,6 +90,7 @@ $(".game_button").on("mouseup", function(evt) {
   if (player.inGame == true) {
     if ($(this).attr("id") === computer.sequence[clickNumber]) {
       clickNumber = clickNumber + 1;
+      $(this).css("opacity", "0.6");
         if (computer.sequence.length == clickNumber) {
           youMayPass();
       }
@@ -109,12 +110,6 @@ $(".game_button").on("mouseup", function(evt) {
 $(".game_button").on("mousedown", function(evt) {
     if (player.inGame == true) {
       $(this).css("opacity", "1");
-    }
-});
-
-$(".game_button").on("mouseup", function(evt) {
-    if (player.inGame == true) {
-      $(this).css("opacity", "0.6");
     }
 });
 

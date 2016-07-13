@@ -58,11 +58,12 @@ button {
   margin-left: -1px;
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
-  background-color: rgb(254, 113, 94);
+  background-color: rgb(236, 47, 21);
+  color: rgb(215, 215, 215);
 }
 
 #reset_button:hover {
-  background-color: rgb(236, 47, 21);
+  background-color: rgb(254, 113, 94);
   color: white;
 }
 
@@ -90,6 +91,8 @@ GAME SECTION
   position: relative;
   border-radius: 10px;
   margin-top: 2em;
+  border-bottom-right-radius: 30px;
+  border-bottom-left-radius: 30px;
 }
 
 .game_button {
@@ -103,12 +106,15 @@ GAME SECTION
   margin-left: 3px;
   opacity: 0.6;
   cursor: pointer;
+  -webkit-box-shadow: inset 0px 7px 11px 8px rgba(0,0,0,0.30);
+  -moz-box-shadow: inset 0px 7px 11px 8px rgba(0,0,0,0.30);
+  box-shadow: inset 0px 7px 11px 8px rgba(0,0,0,0.30);
 }
 
 .game_button:active {
-  -webkit-box-shadow: inset 0px 6px 11px 8px rgba(0,0,0,0.75);
-  -moz-box-shadow: inset 0px 6px 11px 8px rgba(0,0,0,0.75);
-  box-shadow: inset 0px 6px 11px 8px rgba(0,0,0,0.75);
+  -webkit-box-shadow: inset 3px 10px 22px 9px rgba(0,0,0,0.63);
+  -moz-box-shadow: inset 3px 10px 22px 9px rgba(0,0,0,0.63);
+  box-shadow: inset 3px 10px 22px 9px rgba(0,0,0,0.63);
 }
 
 #green {
