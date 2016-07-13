@@ -24,7 +24,7 @@ $("#start_button").on("click", function(evt) {
     timeOutID = $(".message_section").html("<p>ROUND "+player.round+"</p>").showAndHide();
     generateSequence();
   } else {
-    timeOutID = $(".message_section").html("<p>GAME ALREADY STARTED</p>").showAndHide();
+    timeOutID = $(".message_section").html("<p>ALREADY IN GAME</p>").showAndHide();
   }
 })
 
