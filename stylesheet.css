@@ -103,7 +103,7 @@ GAME SECTION
   width: 47%;
   top: 2.5px;
   margin-top: 4px;
-  margin-left: 3px;
+  margin-left: 2px;
   opacity: 0.6;
   cursor: pointer;
   -webkit-box-shadow: inset 0px 7px 11px 8px rgba(0,0,0,0.30);
@@ -112,9 +112,9 @@ GAME SECTION
 }
 
 .game_button:active {
-  -webkit-box-shadow: inset 3px 10px 22px 10px rgba(0,0,0,0.50);
-  -moz-box-shadow: inset 3px 10px 22px 10px rgba(0,0,0,0.50);
-  box-shadow: inset 3px 10px 22px 10px rgba(0,0,0,0.50);
+  -webkit-box-shadow: inset 3px 10px 22px 12px rgba(0,0,0,0.60);
+  -moz-box-shadow: inset 3px 10px 22px 12px rgba(0,0,0,0.60);
+  box-shadow: inset 3px 10px 22px 12px rgba(0,0,0,0.60);
 }
 
 #green {
@@ -171,12 +171,22 @@ MEDIA QUERIES
 
   .game_button {
     width: 49%;
+    margin-left: 0;
   }
 
   .message_section p {
     font-weight: 500;
     font-size: 3em;
     margin-top: 0.9em;
+  }
+
+  .game_section,
+  .game_button {
+    max-width: 950px;
+  }
+
+  .game_section {
+    margin: 2em auto;
   }
 
 }

@@ -14,6 +14,7 @@ It will allow, on click, for the program to figure out if the button clicked has
 It resets every round in the nextRound function below by setting clickNumber back to 0, aka index 0 of computer.sequence
 ****/
 
+
 var timeOutID;
 /****
 Setting timeOutID to equal the ID number of anything that has the .showAndHide call so that anytime between now and x seconds, I can CLEAR the ID of that async function occuring, and just cancel it. Since you cannot cancel the jquery delay method,
