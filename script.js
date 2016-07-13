@@ -128,9 +128,7 @@ ON MOUSEDOWN EVENT
 ********************************/
 $(".game_button").on("mousedown", function(evt) {
     if (player.inGame == true) {
-      if ($(this).attr("id") === computer.sequence[clickNumber]) {
-        $(this).css("opacity", "1");
-      }
+      $(this).css("opacity", "1");
     }
 });
 
@@ -148,8 +146,9 @@ function nextRound() {
 FUNCTION THAT ENDS THE GAME EITHER ON CLICKING RESET, OR PRESSING WRONG BUTTON
 ********************************/
 function endGame(state) {
-  $(".message_section").html("");
+  player.inGame = false;
   $(".game_button").css("opacity", "0.6");
+  $(".message_section").html("");
   for (var i = 0; i < shutDown.length; i++) {
     clearTimeout(shutDown[i]);
   }
@@ -159,7 +158,6 @@ function endGame(state) {
     clearTimeout(timeOutID)
     $(".message_section").html("<p>YOU LOST IN ROUND " + (player.round) + "!" + "</p>").show();
   }
-  player.inGame = false;
   player.round = 0;
   clickNumber = 0;
   computer.sequence = [];
