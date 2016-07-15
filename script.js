@@ -9,51 +9,36 @@ $("#start_button").on("click", function(evt) {
     player.roundNumber += 1;
     computer.generateSequence();
     gameView = new GameView(computer);
-    console.log(gameView.iterator());
+    gameView.iterator();
     timeOutID = gameView.displayMessage("<p>ROUND "+player.round+"</p>", "start")
   } else {
     timeOutID = gameView.displayMessage("<p>ALREADY IN GAME</p>", "error")
   }
 })
 
-
-
 $("#reset_button").on("click", function (evt) {
   evt.preventDefault();
   endGame("reset");
   gameView = new GameView(computer);
-
 })
 
+$(".game_button").on("mousedown", function(evt) {
+    if (player.inGame == true) {
+      $(this).css("opacity", "1");
+    }
+});
 
-
-
-
-
-
-
-
-/********************************
-WHEN YOU CLICK THE RESET BUTTON
-********************************/
-$("#reset_button").on("click", function (evt) {
-  evt.preventDefault();
-  endGame("reset");
-})
-
-
-
-/********************************
-ON MOUSEUP EVENT
-********************************/
 $(".game_button").on("mouseup", function(evt) {
   evt.preventDefault();
   if (player.inGame == true) {
-    if ($(this).attr("id") === computer.sequence[clickNumber]) {
-      clickNumber = clickNumber + 1;
+    if ($(this).attr("id") === computer.sequence[player.clickNumber]) {
+      player.clickNumber = player.clickNumber + 1;
       $(this).css("opacity", "0.6");
-        if (computer.sequence.length == clickNumber) {
-          nextRound();
+        if (player.clickNumber == computer.positionInArray) {
+          console.log("hell yeah");
+          gameView = new GameView(computer)
+          player.clickNumber = 0;
+          gameView.iterator();
       }
     } else {
       endGame();
@@ -61,14 +46,8 @@ $(".game_button").on("mouseup", function(evt) {
   }
 });
 
-/********************************
-ON MOUSEDOWN EVENT
-********************************/
-$(".game_button").on("mousedown", function(evt) {
-    if (player.inGame == true) {
-      $(this).css("opacity", "1");
-    }
-});
+
+
 
 /********************************
 FUNCTION THAT INITIATES A NEW ROUND, BASICALLY STARTS THE LOOP OVER TO GENERATE NEW COLOR
@@ -86,11 +65,9 @@ FUNCTION THAT ENDS THE GAME EITHER ON CLICKING RESET, OR PRESSING WRONG BUTTON
 function endGame(state) {
   player.inGame = false;
   $(".game_button").css("opacity", "0.6");
-
   for (var i = 0; i < computer.shutDownSequence.length; i++) {
     clearTimeout(computer.shutDownSequence[i]);
   }
-
   if (state === "reset") {
     gameView.displayMessage("<p>GAME RESET</p>", "reset");
   } else {
@@ -100,4 +77,5 @@ function endGame(state) {
   player.round = 0;
   player.clickNumber = 0;
   computer.sequence = [];
+  computer.position = 1;
 }

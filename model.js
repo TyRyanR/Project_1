@@ -19,7 +19,7 @@ function Player(round, clickNumber, inGame) {
 function Computer() {
   this.sequence = [];
   this.shutDownSequence = [];
-  this.position = 1;
+  this.positionInArray = 0;
 }
 
 Computer.prototype = {

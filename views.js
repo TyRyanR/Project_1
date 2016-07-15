@@ -6,7 +6,8 @@ GameView.prototype = {
 
   iterator: function() {
     var delay = 400;
-    for (var i = 0; i < this.computer.position; i++) {
+
+    for (var i = 0; i <= this.computer.positionInArray; i++) {
       //This if/else statement 100 seconds to call the lightIn function if the color is the same as the index before.
       if (this.computer.sequence[i] == this.computer.sequence[i-1]) {
         this.lightIn(this.computer.sequence[i], delay + 100);
@@ -18,7 +19,9 @@ GameView.prototype = {
         this.lightOut(this.computer.sequence[i], delay);
       }
     }
-    this.computer.position++;
+    if (player.inGame = true) {
+      this.computer.positionInArray++;
+    }
   },
   lightIn: function (color, delay) {
     lightInID = setTimeout(function () {
