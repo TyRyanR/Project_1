@@ -7,8 +7,8 @@ $("#start_button").on("click", function(evt) {
   if (player.inGame === false) {
     player.inGame = true;
     player.roundNumber += 1;
-    computer.generateSequence();
     gameView = new GameView(computer);
+    gameView.computer.generateSequence();
     gameView.iterator();
     timeOutID = gameView.displayMessage("<p>ROUND "+player.round+"</p>", "start")
   } else {
@@ -18,7 +18,7 @@ $("#start_button").on("click", function(evt) {
 
 $("#reset_button").on("click", function (evt) {
   evt.preventDefault();
-  endGame("reset");
+  gameView.gameEnder("reset");
   gameView = new GameView(computer);
 })
 
@@ -41,7 +41,7 @@ $(".game_button").on("mouseup", function(evt) {
           gameView.iterator();
       }
     } else {
-      endGame();
+      gameView.gameEnder();
     }
   }
 });
@@ -57,25 +57,4 @@ function nextRound() {
     player.round += 1;
     timeOutID =  $(".message_section").html("<p>ROUND "+player.round+"</p>").showAndHide();
     generateNewColor();
-}
-
-/********************************
-FUNCTION THAT ENDS THE GAME EITHER ON CLICKING RESET, OR PRESSING WRONG BUTTON
-********************************/
-function endGame(state) {
-  player.inGame = false;
-  $(".game_button").css("opacity", "0.6");
-  for (var i = 0; i < computer.shutDownSequence.length; i++) {
-    clearTimeout(computer.shutDownSequence[i]);
-  }
-  if (state === "reset") {
-    gameView.displayMessage("<p>GAME RESET</p>", "reset");
-  } else {
-    clearTimeout(timeOutID)
-    gameView.displayMessage("<p>YOU LOST IN ROUND " + (player.round) + "!" + "</p>", "gameLost");
-  }
-  player.round = 0;
-  player.clickNumber = 0;
-  computer.sequence = [];
-  computer.position = 1;
 }

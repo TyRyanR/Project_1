@@ -38,5 +38,22 @@ GameView.prototype = {
     } else {
         $(".message_section").html(input).show();
     }
+  },
+  gameEnder: function (state) {
+    player.inGame = false;
+    $(".game_button").css("opacity", "0.6");
+    for (var i = 0; i < this.computer.shutDownSequence.length; i++) {
+      clearTimeout(this.computer.shutDownSequence[i]);
+    }
+    if (state === "reset") {
+      this.displayMessage("<p>GAME RESET</p>", "reset");
+    } else {
+      clearTimeout(timeOutID)
+      this.displayMessage("<p>YOU LOST IN ROUND " + (player.round) + "!" + "</p>", "gameLost");
+    }
+    player.round = 0;
+    player.clickNumber = 0;
+    this.computer.sequence = [];
+    this.computer.positionInArray = 0;
   }
 }
