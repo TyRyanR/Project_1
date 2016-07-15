@@ -10,49 +10,31 @@ this is a more manual way.
 ****/
 var lightInID;
 
-function Player(round, clickNum, inGame) {
+function Player(round, clickNumber, inGame) {
   this.roundNumber = round;
-  this.clickNumber = clickNum;
+  this.clickNumber = clickNumber;
   this.inGame = inGame;
 }
 
 function Computer() {
   this.sequence = [];
   this.shutDownSequence = [];
-  this.message = "";
+  this.position = 1;
 }
 
 Computer.prototype = {
   generateSequence: function() {
     for (var i = 0; i < 40; i++) {
       var newNumber = Math.floor(Math.random() * ((4-0)+1) + 0);
-      this.sequence.push(newNumber);
-    }
-  },
-  iterator: function() {
-    var delay = 400;
-    for (var i = 0; i < computer.sequence.length; i++) {
-      //This if/else statement 100 seconds to call the lightIn function if the color is the same as the index before.
-      if (this.sequence[i] == this.sequence[i-1]) {
-        lightIn(this.sequence[i], delay + 100);
-        delay += 400;
-        lightOut(this.sequence[i], delay);
+      if (newNumber == 1) {
+        this.sequence.push("green");
+      } else if (newNumber == 2) {
+        this.sequence.push("red");
+      } else if (newNumber == 3) {
+        this.sequence.push("yellow");
       } else {
-        lightIn(this.sequence[i], delay);
-        delay += 400;
-        lightOut(this.sequence[i], delay);
+        this.sequence.push("blue");
       }
     }
-  },
-  lightIn: function (color, delay) {
-    lightInID = setTimeout(function () {
-      $("#" + color).css("opacity", "1");
-    }, delay);
-    this.shutDownSequence.push(lightInID);
-  },
-  lightOut: function (color, delay) {
-    setTimeout(function () {
-        $("#" + color).css("opacity", "0.6");
-    }, delay);
   }
 }
