@@ -3,10 +3,8 @@ function GameView(computer) {
 }
 
 GameView.prototype = {
-
   iterator: function() {
     var delay = 400;
-
     for (var i = 0; i <= this.computer.positionInArray; i++) {
       //This if/else statement 100 seconds to call the lightIn function if the color is the same as the index before.
       if (this.computer.sequence[i] == this.computer.sequence[i-1]) {
@@ -41,5 +39,4 @@ GameView.prototype = {
         $(".message_section").html(input).show();
     }
   }
-
 }
